@@ -1,9 +1,9 @@
-export type PromiseResult<T> = { type: 'loading' } | { type: 'success'; value: T } | { type: 'failure'; error: any }
-import React from 'react'
+export type PromiseResult<T> = { type: 'loading' } | { type: 'success'; value: T } | { type: 'failure'; error: any };
+import React from 'react';
 
 export function usePromise<T>(promise: () => Promise<T>): PromiseResult<T> {
 
-  const [response, setResponse] = React.useState()
+  const [response, setResponse] = React.useState();
 
 
   React.useEffect(() => {
@@ -13,7 +13,7 @@ export function usePromise<T>(promise: () => Promise<T>): PromiseResult<T> {
       setResponse({ type: 'error', value: error })
     })
 
-  }, [])
+  }, []);
 
   return response
 

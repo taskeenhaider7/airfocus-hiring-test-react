@@ -1,50 +1,49 @@
-import * as React from 'react'
-import { listUsers, User } from '../data'
-import { usePromise } from './usePromise'
-import './TableStyles.css'
+import * as React from 'react';
+import {listUsers, User} from '../data';
+import {usePromise} from './usePromise';
 
 export const UserTable: React.FC = () => {
 
-  const response = usePromise(listUsers)
+    const response = usePromise(listUsers);
 
-  return (
-    <>
+    return (
+        <>
 
-      {(!response || (response && response.type !== 'success')) ?
-        <div>Loading....</div>
+            {(!response || (response && response.type !== 'success')) ?
+                <div>Loading....</div>
 
-        :
+                :
 
-        <table>
-          <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Email</th>
-            <th>Groups Count</th>
-          </tr>
-          </thead>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Email</th>
+                        <th>Groups Count</th>
+                    </tr>
+                    </thead>
 
-          <tbody>
+                    <tbody>
 
-          {
-            response.value.map((user: User, index: number) => {
+                    {
+                        response.value.map((user: User, index: number) => {
 
-              return (
-                <tr key={index}>
-                  <td>{user.id}</td>
-                  <td>{user.email}</td>
-                  <td>{user.groupIds.length}</td>
-                </tr>
-              )
+                            return (
+                                <tr key={index}>
+                                    <td>{user.id}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.groupIds.length}</td>
+                                </tr>
+                            )
 
-            })
-          }
+                        })
+                    }
 
-          </tbody>
-        </table>
-      }
-    </>
+                    </tbody>
+                </table>
+            }
+        </>
 
-  )
+    )
 
-}
+};
